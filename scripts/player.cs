@@ -32,8 +32,8 @@ public partial class player : CharacterBody2D
 		// More about Wrapi(): https://docs.godotengine.org/en/stable/classes/class_@globalscope.html#method-descriptions
 		angle = Mathf.Wrap(angle, 0, 8);
 		
-		GD.Print("mousePos coordinater: " + mousePos + " angle: " + mousePos.Angle());
-		GD.Print(angle);
+		//GD.Print("mousePos coordinater: " + mousePos + " angle: " + mousePos.Angle());
+		//GD.Print(angle);
 		
 		// Player animation
 		AnimatedSprite2D AS2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
