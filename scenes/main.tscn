@@ -2,13 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://bxsi3kyn0l8iq" path="res://scenes/world.tscn" id="1_juhsj"]
 [ext_resource type="PackedScene" uid="uid://co5q3e1uejg6x" path="res://scenes/player.tscn" id="2_brwsv"]
-[ext_resource type="PackedScene" uid="uid://b0aoq5aknsb0" path="res://scenes/enemy_spawner.tscn" id="3_qseso"]
+[ext_resource type="PackedScene" uid="uid://dmruylelx6ky4" path="res://scenes/enemy_spawner.tscn" id="3_mdsks"]
 
-[node name="Node" type="Node"]
+[node name="Main" type="Node"]
 
 [node name="World" parent="." instance=ExtResource("1_juhsj")]
 
 [node name="Player" parent="." instance=ExtResource("2_brwsv")]
 position = Vector2(392, 353)
 
-[node name="EnemySpawner" parent="." instance=ExtResource("3_qseso")]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(392, 391)
+zoom = Vector2(0.75, 0.75)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_mdsks")]

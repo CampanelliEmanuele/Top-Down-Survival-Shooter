@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0aoq5aknsb0"]
+[gd_scene load_steps=2 format=3 uid="uid://dmruylelx6ky4"]
 
-[ext_resource type="Script" path="res://scripts/enemy_spawner.cs" id="1_ddyup"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.cs" id="1_cl2cy"]
 
 [node name="EnemySpawner" type="Node2D"]
-script = ExtResource("1_ddyup")
+script = ExtResource("1_cl2cy")
 
 [node name="UpLeft" type="Marker2D" parent="."]
 position = Vector2(360, -50)
@@ -43,3 +43,5 @@ position = Vector2(450, 800)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
