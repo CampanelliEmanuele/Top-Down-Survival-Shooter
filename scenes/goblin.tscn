@@ -56,8 +56,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_05rg7"]
-size = Vector2(8.75, 9.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w7asg"]
+radius = 4.0
+height = 10.0
 
 [node name="Goblin" type="CharacterBody2D"]
 scale = Vector2(4, 4)
@@ -70,14 +71,14 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hqxs4")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
-frame = 3
-frame_progress = 0.291642
+frame_progress = 0.535363
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.625, 3)
-shape = SubResource("RectangleShape2D_05rg7")
+shape = SubResource("CapsuleShape2D_w7asg")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
