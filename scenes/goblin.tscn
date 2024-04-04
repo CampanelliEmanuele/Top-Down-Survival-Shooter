@@ -62,7 +62,9 @@ size = Vector2(8.75, 9.5)
 [node name="Goblin" type="CharacterBody2D"]
 scale = Vector2(4, 4)
 collision_layer = 4
-collision_mask = 5
+collision_mask = 7
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_167xf")
 metadata/_edit_group_ = true
 
