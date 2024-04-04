@@ -20,7 +20,7 @@ public partial class enemy_spawner : Node2D
 			if (node is Marker2D)
 				SpawnPoints.Add((Marker2D)node);
 		
-		GD.Print("READY");
+		//GD.Print("READY");
 	}
 	
 	private void _on_timer_timeout()

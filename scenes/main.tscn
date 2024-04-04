@@ -1,12 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://d05goprvn7yjb"]
+[gd_scene load_steps=5 format=3 uid="uid://d05goprvn7yjb"]
 
 [ext_resource type="PackedScene" uid="uid://bxsi3kyn0l8iq" path="res://scenes/world.tscn" id="1_juhsj"]
 [ext_resource type="PackedScene" uid="uid://co5q3e1uejg6x" path="res://scenes/player.tscn" id="2_brwsv"]
 [ext_resource type="PackedScene" uid="uid://dmruylelx6ky4" path="res://scenes/enemy_spawner.tscn" id="3_mdsks"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rpcek"]
+vertices = PackedVector2Array(474, 833, 341, 833, 342, 763, 473, 762, 4, 760, 10, 468, -78, 468, -78, 338, 8, 339, 759, 335, 834, 335, 834, 480, 758, 482, 331, -71, 479, -71, 479, 3, 328, 5, 10, 4, 758, 6, 758, 751)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5), PackedInt32Array(6, 7, 8, 5), PackedInt32Array(9, 10, 11, 12, 8), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(8, 17, 16, 9), PackedInt32Array(15, 18, 9, 16), PackedInt32Array(8, 12, 19, 3, 2, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1, -6, 318, -5, 321, -81, 489, -81, 489, -7, 768, -3, 769, 325, 844, 325, 845, 490, 768, 492, 769, 761, 483, 772, 485, 843, 331, 844, 332, 773, -6, 770, 0, 478, -88, 478, -88, 328, -2, 329)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
 [node name="Main" type="Node"]
 
-[node name="World" parent="." instance=ExtResource("1_juhsj")]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_rpcek")
+
+[node name="World" parent="NavigationRegion2D" instance=ExtResource("1_juhsj")]
 
 [node name="Player" parent="." instance=ExtResource("2_brwsv")]
 position = Vector2(392, 353)
