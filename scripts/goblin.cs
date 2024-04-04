@@ -9,7 +9,7 @@ public partial class goblin : CharacterBody2D
 	private NavigationAgent2D _navigationAgent;
 	private CharacterBody2D _player;
 
-	private Vector2 _movementTargetPosition;// = new Vector2(70.0f, 226.0f);
+	private Vector2 _movementTargetPosition;
 
 	public Vector2 MovementTarget
 	{
