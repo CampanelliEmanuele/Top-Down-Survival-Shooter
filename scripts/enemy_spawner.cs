@@ -35,7 +35,7 @@ public partial class enemy_spawner : Node2D
 		Main.AddChild(Goblin);
 		// This solution sucks
 		Goblin.Name = "Goblin";
-		GD.Print(Goblin.Name);
+		//GD.Print(Goblin.Name);
 		
 		//GD.Print(Goblin.Position);
 	}

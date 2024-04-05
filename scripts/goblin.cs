@@ -54,7 +54,14 @@ public partial class Goblin : CharacterBody2D
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Stop();
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Animation = "dead";
 		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled" , true);
+		GetNode<Timer>("QueueFreeTimer").Start();
 	}
 
+	private void _on_queue_free_timer_timeout()
+	{
+		QueueFree();
+	}
 }
+
+
 
