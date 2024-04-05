@@ -20,9 +20,17 @@ public partial class Bullet : Area2D
 	
 	private void _on_body_entered(Node2D body)
 	{
-		GD.Print(body.Name);
-		if (body.Name == "World")
+		string BodyName = body.Name;
+		//GD.Print(BodyName);
+		if (BodyName == "World")
 		{
+			QueueFree();
+		}
+		else if (BodyName.Contains("Goblin"))
+		{
+			Goblin goblin = (Goblin)body;
+			if (goblin.Alive)
+				goblin.Die();
 			QueueFree();
 		}
 	}

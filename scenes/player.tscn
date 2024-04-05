@@ -169,6 +169,7 @@ animations = [{
 size = Vector2(44, 64)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_e31hc")
 metadata/_edit_group_ = true
 
@@ -183,6 +184,6 @@ position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_upnyp")
 
 [node name="ShotTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.1
 
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
