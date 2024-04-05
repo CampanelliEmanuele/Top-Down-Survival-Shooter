@@ -18,5 +18,15 @@ public partial class Bullet : Area2D
 		Position += Direction * Speed * (float)delta;
 	}
 	
+	private void _on_body_entered(Node2D body)
+	{
+		GD.Print(body.Name);
+		if (body.Name == "World")
+		{
+			QueueFree();
+		}
+	}
 
 }
+
+
