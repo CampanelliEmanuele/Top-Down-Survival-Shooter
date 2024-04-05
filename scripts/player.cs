@@ -10,11 +10,14 @@ public partial class player : CharacterBody2D
 	public delegate void ShootEventHandler(Vector2 StartPos, Vector2 Direction);
 	
 	public Vector2 ScreenSize;
+	
+	public bool CanShoot;
 
 	public override void _Ready()
 	{
 		ScreenSize = GetViewportRect().Size;
 		Position = ScreenSize / 2;
+		CanShoot = true;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -60,12 +63,21 @@ public partial class player : CharacterBody2D
 		// Normalizing the vector gives the same speed even in the diagonal movement
 		Velocity = inputDirection.Normalized() * Speed;
 		
-		if (Input.IsMouseButtonPressed(MouseButton.Left))
+		if (CanShoot && Input.IsActionJustPressed("shoot"))
 		{
 			Vector2 Direction = GetGlobalMousePosition() - Position;
 			EmitSignal(SignalName.Shoot, Position, Direction);
+			CanShoot = false;
+			GetNode<Timer>("ShotTimer").Start();
 		}
 		
 	}
+	
+	private void _on_shot_timer_timeout()
+	{
+		CanShoot = true;
+	}
 
 }
+
+
