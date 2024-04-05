@@ -5,6 +5,9 @@ public partial class player : CharacterBody2D
 {
 	[Export]
 	public int Speed { get; set; } = 200;
+
+	[Signal]
+	public delegate void ShootEventHandler(Vector2 StartPos, Vector2 Direction);
 	
 	public Vector2 ScreenSize;
 
@@ -56,6 +59,13 @@ public partial class player : CharacterBody2D
 		Vector2 inputDirection = Input.GetVector("left", "right", "up", "down");
 		// Normalizing the vector gives the same speed even in the diagonal movement
 		Velocity = inputDirection.Normalized() * Speed;
+		
+		if (Input.IsMouseButtonPressed(MouseButton.Left))
+		{
+			Vector2 Direction = GetGlobalMousePosition() - Position;
+			EmitSignal(SignalName.Shoot, Position, Direction);
+		}
+		
 	}
 
 }
