@@ -29,10 +29,10 @@ public partial class enemy_spawner : Node2D
 		// Getting the numbers of alive enemies
 		var enemies = GetTree().GetNodesInGroup("enemies");
 		
-		Node parent = GetParent<Node>();
+		//Node parent = GetParent<Node>();
 		
-		if (enemies.Count < parent.MaxEnemies)
-		{
+		//if (enemies.Count < parent.MaxEnemies)
+		//{
 			// Get a random spawn
 			int RandomIndex = GD.RandRange(0, SpawnPoints.Count);
 			var RandomSpawn = SpawnPoints[RandomIndex];
@@ -50,7 +50,7 @@ public partial class enemy_spawner : Node2D
 			
 			// This solution sucks
 			Goblin.Name = "Goblin";
-		}
+		//}
 	}
 	
 	private void OnGoblinHitPlayer()
