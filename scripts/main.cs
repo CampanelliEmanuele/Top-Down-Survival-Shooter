@@ -15,20 +15,14 @@ public partial class Main : Node
 		Wave = 1;
 		MaxEnemies = 10;
 		
-		GetNode<Label>("LifeLabel").Text = "X " + PlayerLives.ToString();
-		GetNode<Label>("WaveLabel").Text = "WAVE: " + Wave.ToString();
-		GetNode<Label>("EnemiesLabel").Text = "X: " + CurrEnemies.ToString();
+		GetNode<Label>("/root/Main/Hud/LifeLabel").Text = "X " + PlayerLives.ToString();
+		GetNode<Label>("/root/Main/Hud/WaveLabel").Text = "WAVE: " + Wave.ToString();
+		GetNode<Label>("/root/Main/Hud/EnemiesLabel").Text = "X: " + CurrEnemies.ToString();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	private void _on_enemy_spawner_damage_player(int damage)
 	{
-	}
-	
-	private void _on_enemy_spawner_damage_player()
-	{
-		// Replace with function body.
+		PlayerLives -= damage;
 	}
 
 }
-

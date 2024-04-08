@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://d05goprvn7yjb"]
 
-[ext_resource type="PackedScene" uid="uid://bxsi3kyn0l8iq" path="res://scenes/world.tscn" id="1_juhsj"]
-[ext_resource type="Script" path="res://scripts/Main.cs" id="1_slekm"]
-[ext_resource type="PackedScene" uid="uid://co5q3e1uejg6x" path="res://scenes/player.tscn" id="2_brwsv"]
-[ext_resource type="PackedScene" uid="uid://dmruylelx6ky4" path="res://scenes/enemy_spawner.tscn" id="3_mdsks"]
-[ext_resource type="Script" path="res://scripts/BulletManager.cs" id="4_1ed2s"]
-[ext_resource type="PackedScene" uid="uid://dri7laq4qttwq" path="res://scenes/hud.tscn" id="5_4yu2p"]
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_32h3o"]
+[ext_resource type="PackedScene" uid="uid://bxsi3kyn0l8iq" path="res://scenes/world.tscn" id="2_ry07w"]
+[ext_resource type="PackedScene" uid="uid://co5q3e1uejg6x" path="res://scenes/Player.tscn" id="3_dodxn"]
+[ext_resource type="PackedScene" uid="uid://dmruylelx6ky4" path="res://scenes/enemy_spawner.tscn" id="4_b0mo2"]
+[ext_resource type="Script" path="res://scripts/BulletManager.cs" id="5_0fkii"]
+[ext_resource type="PackedScene" uid="uid://dri7laq4qttwq" path="res://scenes/hud.tscn" id="6_x5ioc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rpcek"]
 vertices = PackedVector2Array(519, 106, 525, 101, 518, 109, 567, 154, 573, 149, 566, 157, 711, 58, 717, 53, 710, 61, 39, 346, 45, 341, 38, 349, 135, 394, 141, 389, 134, 397, 327, 58, 333, 53, 326, 61, 423, 154, 429, 149, 422, 157, 471, 202, 477, 197, 470, 205, 58, 394, 12, 470, 9, 472, 10, 468, 38, 379, 588, 134, 586, 136, 586, 112, 540, 86, 538, 88, 538, 64, 588, 710, 586, 712, 586, 688, 60, 710, 58, 712, 58, 688, 204, 566, 202, 568, 202, 544, 60, 326, 58, 328, 58, 304, 492, 182, 490, 184, 490, 160, 444, 134, 442, 136, 442, 112, 396, 86, 394, 88, 394, 64, 348, 38, 346, 40, 346, 16, 528, 51, 528, 50, 538, 58, 432, 531, 432, 530, 442, 538, 442, 544, 48, 51, 48, 50, 58, 58, 58, 64, 384, 147, 384, 146, 394, 154, 394, 160, 490, 106, 538, 154, 682, 58, 10, 346, 106, 394, 298, 58, 442, 202, 422, 187, 394, 188, 710, 685, 684, 710, 671, 722, 662, 710, 615, 538, 710, 667, 636, 710, 623, 722, 614, 710, 586, 668, 586, 640, 298, 634, 300, 710, 287, 722, 278, 710, 279, 634, 288, 626, 250, 634, 252, 710, 239, 722, 230, 710, 231, 634, 240, 626, 202, 634, 204, 710, 191, 722, 182, 710, 183, 634, 192, 626, 156, 710, 143, 722, 134, 710, 154, 634, 108, 710, 95, 722, 86, 710, 540, 470, 527, 482, 518, 470, 492, 470, 479, 482, 470, 470, 444, 470, 431, 482, 422, 470, 375, 346, 348, 566, 335, 578, 326, 566, 300, 566, 287, 578, 278, 566, 252, 566, 239, 578, 230, 566, 202, 524, 202, 496, 156, 326, 143, 338, 134, 326, 108, 326, 95, 338, 86, 326, 58, 284, 58, 256, 576, 675, 48, 675, 58, 668, 134, 619, 58, 640, 48, 627, 58, 620, 134, 589, 58, 592, 48, 579, 58, 572, 134, 571, 143, 578, 134, 541, 58, 544, 48, 531, 58, 524, 134, 523, 143, 530, 442, 592, 432, 579, 442, 572, 540, 614, 518, 637, 634, 496, 624, 483, 634, 476, 710, 493, 710, 523, 634, 448, 624, 435, 634, 428, 634, 400, 624, 387, 634, 380, 710, 331, 192, 531, 192, 483, 202, 476, 374, 541, 202, 448, 192, 435, 202, 428, 374, 523, 383, 530, 202, 400, 192, 387, 202, 380, 326, 331, 346, 346, 48, 291, 48, 243, 58, 236, 58, 208, 48, 195, 58, 188, 326, 205, 326, 235, 58, 160, 48, 147, 58, 140, 58, 112, 48, 99, 58, 92, 490, 250, 394, 304, 384, 291, 394, 284, 470, 235, 394, 256, 384, 243, 394, 236, 394, 208, 384, 195, 470, 43, 479, 50, 470, 61, 422, 86, 710, 91, 719, 98, 710, 109, 634, 160, 710, 139, 719, 146, 710, 157, 710, 187, 719, 194, 710, 205, 634, 188, 710, 235, 719, 242, 710, 253, 615, 202, 614, 326, 710, 283, 719, 290, 710, 301, 634, 352, 719, 530, 710, 541, 634, 524, 710, 571, 719, 578, 710, 589, 710, 619, 719, 626, 710, 637, 719, 674, 442, 620, 518, 667, 527, 674, 518, 685, 492, 710, 423, 634, 134, 427, 143, 434, 134, 445, 58, 496, 134, 475, 143, 482, 134, 493, 566, 379, 575, 386, 566, 397, 394, 332, 566, 427, 575, 434, 566, 445, 279, 58, 326, 91, 335, 98, 326, 109, 250, 58, 326, 139, 335, 146, 326, 157, 326, 187, 335, 194, 335, 242, 326, 253, 182, 326, 326, 283, 335, 290, 326, 301, 202, 352, 470, 763, 473, 765, 474, 833, 341, 833, 341, 766, 346, 764, 394, 634, 470, 733, 346, 736, 375, 634, 384, 626, 567, 58, 566, 86, 774, 335, 834, 335, 834, 480, 767, 481, 758, 470, 759, 346, 730, 346, 732, 470, 710, 710, 518, 710, -78, 468, -78, 338, 0, 338, 471, 538, 566, 470, 374, 566, 87, 58, 328, -6, 331, -71, 479, -71, 479, 3, 470, 13, 374, 38, 470, 91, 615, 58, 614, 134, 586, 58, 518, 182, 518, 139, 470, 134, 566, 187, 538, 208, 663, 58, 87, 394, 38, 470, 576, 50, 624, 50, 634, 58, 672, 50, 96, 386, 327, 634, 336, 626, 346, 634, 326, 710, 480, 530, 490, 538, 519, 538, 528, 530, 538, 538, 567, 538, 576, 530, 586, 538, 566, 614, 96, 50, 106, 58, 135, 58, 144, 50, 154, 58, 183, 58, 192, 50, 202, 58, 231, 58, 240, 50, 288, 50, 538, 236, 586, 202, 588, 326, 519, 250, 566, 349, 396, 470, 374, 493)
@@ -14,23 +14,23 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(1, -6, 318, -5, 321, -8
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Main" type="Node"]
-script = ExtResource("1_slekm")
+script = ExtResource("1_32h3o")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_rpcek")
 
-[node name="World" parent="NavigationRegion2D" instance=ExtResource("1_juhsj")]
+[node name="World" parent="NavigationRegion2D" instance=ExtResource("2_ry07w")]
 
-[node name="Player" parent="." instance=ExtResource("2_brwsv")]
+[node name="Player" parent="." instance=ExtResource("3_dodxn")]
 position = Vector2(392, 353)
 
-[node name="EnemySpawner" parent="." instance=ExtResource("3_mdsks")]
+[node name="EnemySpawner" parent="." instance=ExtResource("4_b0mo2")]
 z_index = -1
 
 [node name="BulletManager" type="Node2D" parent="."]
-script = ExtResource("4_1ed2s")
+script = ExtResource("5_0fkii")
 
-[node name="Hud" parent="." instance=ExtResource("5_4yu2p")]
+[node name="Hud" parent="." instance=ExtResource("6_x5ioc")]
 offset = Vector2(0, 768)
 transform = Transform2D(1, 0, 0, 1, 0, 768)
 

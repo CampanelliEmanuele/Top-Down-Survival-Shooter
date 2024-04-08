@@ -16,4 +16,3 @@ public partial class BulletManager : Node2D
 		AddChild(bullet);
 	}
 }
-

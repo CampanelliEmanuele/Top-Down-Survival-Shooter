@@ -2,12 +2,12 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class enemy_spawner : Node2D
+public partial class EnemySpawner : Node2D
 {
 	[Signal]
 	public delegate void DamagePlayerEventHandler();
 	
-	private Node2D EnemySpawner;
+	private Node2D EnemySpawnerNode;
 	
 	// See more on the section "Loading scenes" at: https://docs.godotengine.org/en/stable/tutorials/scripting/resources.html#loading-resources-from-code
 	private PackedScene GoblinScene = GD.Load<PackedScene>("res://scenes/goblin.tscn");
@@ -17,7 +17,7 @@ public partial class enemy_spawner : Node2D
 	public override void _Ready()
 	{
 		// See more on the section "@onready annotation" at: https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_differences.html#onready-annotation
-		EnemySpawner = GetNode<Node2D>("/root/Main/EnemySpawner");
+		EnemySpawnerNode = GetNode<Node2D>("/root/Main/EnemySpawner");
 		
 		foreach (Node node in GetChildren())
 			if (node is Marker2D)
@@ -34,13 +34,17 @@ public partial class enemy_spawner : Node2D
 		if (enemies.Count < parent.MaxEnemies)
 		{
 			// Get a random spawn
-			int RandomIndex = GD.RandRange(0, SpawnPoints.Count);
+			int RandomIndex = -1;
+			while (RandomIndex <= 0)
+			{
+				RandomIndex = GD.RandRange(0, SpawnPoints.Count - 1);
+			}
 			var RandomSpawn = SpawnPoints[RandomIndex];
 			
-			// Instantiate a new goblin, set the position and add it to the EnemySpawner Node
+			// Instantiate a new goblin, set the position and add it to EnemySpawnerNode
 			Goblin Goblin = (Goblin)GoblinScene.Instantiate();
 			Goblin.Position = RandomSpawn.Position;
-			EnemySpawner.AddChild(Goblin);
+			EnemySpawnerNode.AddChild(Goblin);
 			Goblin.AddToGroup("enemies");
 			
 			// Connecting the Goblin's HitPlayer signal to the EnemySpawner's Hit signal
