@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class main : Node
+public partial class Main : Node
 {
 	public int PlayerLives;
 	public int Wave;
