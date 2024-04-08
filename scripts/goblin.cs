@@ -3,13 +3,14 @@ using System;
 
 public partial class Goblin : CharacterBody2D
 {
-	
+	[Signal]
+	public delegate void HitPlayerEventHandler();
+		
 	public int _movementSpeed = 200;
 	public int _acceleration = 7;
 
 	private NavigationAgent2D _navigationAgent;
 	private CharacterBody2D _player;
-
 	private Vector2 _movementTargetPosition;
 	
 	public bool Alive;
@@ -35,7 +36,7 @@ public partial class Goblin : CharacterBody2D
 			{
 				return;
 			}
-
+			
 			Vector2 Direction = _navigationAgent.GetNextPathPosition() - GlobalPosition;
 			Direction = Direction.Normalized();
 			Velocity = Velocity.Lerp(Direction * _movementSpeed, _acceleration * (float)delta);
@@ -54,6 +55,8 @@ public partial class Goblin : CharacterBody2D
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Stop();
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Animation = "dead";
 		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled" , true);
+		GetNode<Area2D>("Area2D").GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled" , true);
+		
 		GetNode<Timer>("QueueFreeTimer").Start();
 	}
 
@@ -61,7 +64,15 @@ public partial class Goblin : CharacterBody2D
 	{
 		QueueFree();
 	}
+	
+	private void _on_area_2d_body_entered(Node2D body)
+	{
+		if (body.Name == "Player")
+			EmitSignal(SignalName.HitPlayer);
+	}
+
 }
+
 
 
 
