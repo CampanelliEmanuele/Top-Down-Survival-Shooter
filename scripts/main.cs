@@ -14,7 +14,10 @@ public partial class Main : Node
 		PlayerLives = 3;
 		Wave = 1;
 		MaxEnemies = 10;
-		
+	}
+	
+	public void _process(double delta)
+	{
 		GetNode<Label>("/root/Main/Hud/LifeLabel").Text = "X " + PlayerLives.ToString();
 		GetNode<Label>("/root/Main/Hud/WaveLabel").Text = "WAVE: " + Wave.ToString();
 		GetNode<Label>("/root/Main/Hud/EnemiesLabel").Text = "X: " + CurrEnemies.ToString();
@@ -23,6 +26,9 @@ public partial class Main : Node
 	private void _on_enemy_spawner_damage_player(int damage)
 	{
 		PlayerLives -= damage;
+		GD.Print(PlayerLives);
 	}
 
 }
+
+

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class EnemySpawner : Node2D
 {
 	[Signal]
-	public delegate void DamagePlayerEventHandler();
+	public delegate void DamagePlayerEventHandler(int damage);
 	
 	private Node2D EnemySpawnerNode;
 	
@@ -59,7 +59,7 @@ public partial class EnemySpawner : Node2D
 	
 	private void OnGoblinHitPlayer()
 	{
-		EmitSignal(SignalName.DamagePlayer);
+		EmitSignal(SignalName.DamagePlayer, 1);
 	}
 
 }
