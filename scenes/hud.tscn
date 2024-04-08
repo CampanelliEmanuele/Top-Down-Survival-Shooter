@@ -15,7 +15,7 @@ offset_right = 768.0
 offset_bottom = 48.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_jqaia")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="LifeSprite" type="Sprite2D" parent="."]
 position = Vector2(37, 24)
 scale = Vector2(3, 3)
 texture = ExtResource("1_cm3lr")
@@ -44,7 +44,7 @@ text = "WAVE: 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="GoblinSprite" type="Sprite2D" parent="."]
 position = Vector2(647, 13)
 scale = Vector2(4, 4)
 texture = ExtResource("2_igpu1")
