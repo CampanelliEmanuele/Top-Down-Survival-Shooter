@@ -26,7 +26,6 @@ public partial class Main : Node
 	private void _on_enemy_spawner_damage_player(int damage)
 	{
 		PlayerLives -= damage;
-		GD.Print(PlayerLives);
 	}
 
 }

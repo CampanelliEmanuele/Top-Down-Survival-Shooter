@@ -3,9 +3,7 @@ using System;
 
 public partial class Goblin : CharacterBody2D
 {
-	[Signal]
-	public delegate void HitPlayerEventHandler();
-		
+	
 	public int _movementSpeed = 200;
 	public int _acceleration = 7;
 
@@ -14,6 +12,13 @@ public partial class Goblin : CharacterBody2D
 	private Vector2 _movementTargetPosition;
 	
 	public bool Alive;
+	
+	[Signal]
+	public delegate void HitPlayerEventHandler();
+
+	private PackedScene ItemScene = GD.Load<PackedScene>("res://scenes/Item.tscn");
+	
+	private Node _itemsNode;
 
 	public override void _Ready()
 	{
@@ -21,7 +26,9 @@ public partial class Goblin : CharacterBody2D
 		
 		_navigationAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 		_player = GetNode<CharacterBody2D>("/root/Main/Player");
+		_itemsNode = GetNode<Node>("/root/Main/ItemsNode");
 		_movementTargetPosition = _player.Position;
+
 
 		Alive = true;
 	}
@@ -50,7 +57,8 @@ public partial class Goblin : CharacterBody2D
 		_navigationAgent.TargetPosition = _player.GlobalPosition;
 	}
 	
-	public void Die() {
+	public void Die()
+	{
 		Alive = false;
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Stop();
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Animation = "dead";
@@ -58,6 +66,17 @@ public partial class Goblin : CharacterBody2D
 		GetNode<Area2D>("Area2D").GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled" , true);
 		
 		GetNode<Timer>("QueueFreeTimer").Start();
+		DropItem();
+	}
+	
+	private void DropItem()
+	{
+		Area2D item = (Area2D)ItemScene.Instantiate();
+		item.Position = this.Position;
+		item.AddToGroup("items");
+		// The following two lines are equivalent
+		//_itemsNode.CallDeferred("add_child", item);
+		_itemsNode.CallDeferred(Node.MethodName.AddChild, item);
 	}
 
 	private void _on_queue_free_timer_timeout()
