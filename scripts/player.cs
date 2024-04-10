@@ -10,7 +10,8 @@ public partial class Player : CharacterBody2D
 	public delegate void ShootEventHandler(Vector2 StartPos, Vector2 Direction);
 	
 	public Vector2 ScreenSize;
-	
+
+	public int _playerLives;
 	public bool CanShoot;
 	private int NORMAL_SPEED = 200;
 	private int BOOST_SPEED = 375;
@@ -21,6 +22,7 @@ public partial class Player : CharacterBody2D
 		Position = ScreenSize / 2;
 		CanShoot = true;
 		Speed = NORMAL_SPEED;
+		_playerLives = 3;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -94,7 +96,21 @@ public partial class Player : CharacterBody2D
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").SpeedScale = 1;
 	}
 
-}
+	public void increaseLife(int amount)
+	{
+		_playerLives += amount;
+	}
 
+	public void decreaseLife(int amount)
+	{
+		_playerLives -= amount;
+	}
+
+	private void _on_enemy_spawner_damage_player(int damage)
+	{
+		_playerLives -= damage;
+	}
+
+}
 
 
