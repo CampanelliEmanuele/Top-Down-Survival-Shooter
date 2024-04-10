@@ -169,6 +169,7 @@ animations = [{
 size = Vector2(44, 64)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_ce8po")
 metadata/_edit_group_ = true
 
@@ -177,6 +178,8 @@ texture_filter = 1
 scale = Vector2(3.75, 3.75)
 sprite_frames = SubResource("SpriteFrames_dwjt0")
 animation = &"walk2"
+frame = 1
+frame_progress = 0.0257512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -185,4 +188,8 @@ shape = SubResource("RectangleShape2D_upnyp")
 [node name="ShotTimer" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="BoostSpeed" type="Timer" parent="."]
+wait_time = 4.0
+
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
+[connection signal="timeout" from="BoostSpeed" to="." method="_on_boost_speed_timeout"]

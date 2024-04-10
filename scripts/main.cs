@@ -28,5 +28,3 @@ public partial class Main : Node
 	}
 
 }
-
-
