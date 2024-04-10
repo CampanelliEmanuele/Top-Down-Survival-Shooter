@@ -19,7 +19,24 @@ namespace scripts.classes
 
 			GetNode<Sprite2D>("Sprite2D").Texture = _texture;
 		}
+
+		private void _on_body_entered(Player body)
+		{
+			switch (_type)
+			{
+				case ItemType.Coffee:
+					body.BoostSpeed();
+					break;
+				
+				case ItemType.Gun:
+					break;
+				
+				case ItemType.Health:
+					break;
+			}
+
+			QueueFree();
+		}
+
 	}
 }
-
-	 

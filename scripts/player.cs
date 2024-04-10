@@ -2,8 +2,9 @@ using Godot;
 
 public partial class Player : CharacterBody2D
 {
+
 	[Export]
-	public int Speed { get; set; } = 200;
+	public int Speed { get; set; }
 
 	[Signal]
 	public delegate void ShootEventHandler(Vector2 StartPos, Vector2 Direction);
@@ -11,12 +12,15 @@ public partial class Player : CharacterBody2D
 	public Vector2 ScreenSize;
 	
 	public bool CanShoot;
+	private int NORMAL_SPEED = 200;
+	private int BOOST_SPEED = 375;
 
 	public override void _Ready()
 	{
 		ScreenSize = GetViewportRect().Size;
 		Position = ScreenSize / 2;
 		CanShoot = true;
+		Speed = NORMAL_SPEED;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -77,4 +81,20 @@ public partial class Player : CharacterBody2D
 		CanShoot = true;
 	}
 
+	public void BoostSpeed()
+	{
+		GetNode<Timer>("BoostSpeed").Start();
+		Speed = BOOST_SPEED;
+		GetNode<AnimatedSprite2D>("AnimatedSprite2D").SpeedScale = 3;
+	}
+
+	private void _on_boost_speed_timeout()
+	{
+		Speed = NORMAL_SPEED;
+		GetNode<AnimatedSprite2D>("AnimatedSprite2D").SpeedScale = 1;
+	}
+
 }
+
+
+

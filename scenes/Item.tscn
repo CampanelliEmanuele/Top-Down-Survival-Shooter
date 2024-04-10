@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwwmck274k7ax"]
 
-[ext_resource type="Texture2D" uid="uid://jp2xhup5wuo2" path="res://assets/items/health_box.png" id="1_rkysj"]
+[ext_resource type="Texture2D" uid="uid://cwodfdjir68jt" path="res://assets/items/health_box.png" id="1_rkysj"]
 [ext_resource type="Script" path="res://scripts/classes/Item.cs" id="1_t8rwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rlbeo"]
@@ -16,3 +16,5 @@ texture = ExtResource("1_rkysj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rlbeo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
