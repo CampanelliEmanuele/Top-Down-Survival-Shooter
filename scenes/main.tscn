@@ -35,6 +35,7 @@ offset = Vector2(0, 768)
 transform = Transform2D(1, 0, 0, 1, 0, 768)
 
 [node name="ItemsNode" type="Node2D" parent="."]
+z_index = -1
 
 [connection signal="Shoot" from="Player" to="BulletManager" method="_on_player_shoot"]
 [connection signal="DamagePlayer" from="EnemySpawner" to="." method="_on_enemy_spawner_damage_player"]
