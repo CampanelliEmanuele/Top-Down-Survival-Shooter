@@ -1,9 +1,7 @@
 using Godot;
-using System;
 
 public partial class Goblin : CharacterBody2D
 {
-	
 	public int _movementSpeed = 200;
 	public int _acceleration = 7;
 
@@ -28,7 +26,6 @@ public partial class Goblin : CharacterBody2D
 		_player = GetNode<CharacterBody2D>("/root/Main/Player");
 		_itemsNode = GetNode<Node>("/root/Main/ItemsNode");
 		_movementTargetPosition = _player.Position;
-
 
 		Alive = true;
 	}
