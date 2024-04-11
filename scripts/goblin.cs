@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Goblin : CharacterBody2D
@@ -17,6 +18,7 @@ public partial class Goblin : CharacterBody2D
 	private PackedScene ItemScene = GD.Load<PackedScene>("res://scenes/Item.tscn");
 	
 	private Node _itemsNode;
+	private readonly float DROP_CHANCE = 0.1f;
 
 	public override void _Ready()
 	{
@@ -63,7 +65,8 @@ public partial class Goblin : CharacterBody2D
 		GetNode<Area2D>("Area2D").GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled" , true);
 		
 		GetNode<Timer>("QueueFreeTimer").Start();
-		DropItem();
+		if (new Random().NextDouble() < DROP_CHANCE)
+			DropItem();
 	}
 	
 	private void DropItem()
