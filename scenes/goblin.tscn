@@ -85,7 +85,6 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 1.0
-debug_enabled = true
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.1

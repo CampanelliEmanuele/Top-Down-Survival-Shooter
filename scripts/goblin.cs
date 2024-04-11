@@ -16,8 +16,10 @@ public partial class Goblin : CharacterBody2D
 	public delegate void HitPlayerEventHandler();
 
 	private PackedScene ItemScene = GD.Load<PackedScene>("res://scenes/Item.tscn");
+	private PackedScene ExplosionScene = GD.Load<PackedScene>("res://scenes/Explosion.tscn");
 	
 	private Node _itemsNode;
+	private Node _mainNode;
 	private readonly float DROP_CHANCE = 0.1f;
 
 	public override void _Ready()
@@ -27,6 +29,7 @@ public partial class Goblin : CharacterBody2D
 		_navigationAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 		_player = GetNode<CharacterBody2D>("/root/Main/Player");
 		_itemsNode = GetNode<Node>("/root/Main/ItemsNode");
+		_mainNode = GetNode<Node>("/root/Main");
 		_movementTargetPosition = _player.Position;
 
 		Alive = true;
@@ -63,10 +66,16 @@ public partial class Goblin : CharacterBody2D
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Animation = "dead";
 		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled" , true);
 		GetNode<Area2D>("Area2D").GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled" , true);
+
+		Explosion explosion = (Explosion)ExplosionScene.Instantiate();
+		explosion.Position = Position;
+		_mainNode.CallDeferred(Node.MethodName.AddChild, explosion);
+		explosion.ProcessMode = Node.ProcessModeEnum.Always;
 		
-		GetNode<Timer>("QueueFreeTimer").Start();
 		if (new Random().NextDouble() < DROP_CHANCE)
 			DropItem();
+			
+		GetNode<Timer>("QueueFreeTimer").Start();
 	}
 	
 	private void DropItem()
@@ -91,7 +100,3 @@ public partial class Goblin : CharacterBody2D
 	}
 
 }
-
-
-
-
