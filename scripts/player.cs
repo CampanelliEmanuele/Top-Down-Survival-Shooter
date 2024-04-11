@@ -15,6 +15,8 @@ public partial class Player : CharacterBody2D
 	public bool CanShoot;
 	private int NORMAL_SPEED = 200;
 	private int BOOST_SPEED = 375;
+	private float NORMAL_FIRE_RATE = 0.225f;
+	private float BOOST_FIRE_RATE = 0.01f;
 
 	public override void _Ready()
 	{
@@ -23,6 +25,7 @@ public partial class Player : CharacterBody2D
 		CanShoot = true;
 		Speed = NORMAL_SPEED;
 		_playerLives = 3;
+		GetNode<Timer>("ShootTimer").WaitTime = NORMAL_FIRE_RATE;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -73,12 +76,12 @@ public partial class Player : CharacterBody2D
 			Vector2 Direction = GetGlobalMousePosition() - Position;
 			EmitSignal(SignalName.Shoot, Position, Direction);
 			CanShoot = false;
-			GetNode<Timer>("ShotTimer").Start();
+			GetNode<Timer>("ShootTimer").Start();
 		}
 		
 	}
 	
-	private void _on_shot_timer_timeout()
+	private void _on_shoot_timer_timeout()
 	{
 		CanShoot = true;
 	}
@@ -94,6 +97,17 @@ public partial class Player : CharacterBody2D
 	{
 		Speed = NORMAL_SPEED;
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").SpeedScale = 1;
+	}
+
+	public void BoostFireRate()
+	{
+		GetNode<Timer>("BoostFireRate").Start();
+		GetNode<Timer>("ShootTimer").WaitTime = BOOST_FIRE_RATE;
+	}
+
+	private void _on_boost_fire_rate_timeout()
+	{
+		GetNode<Timer>("ShootTimer").WaitTime = NORMAL_FIRE_RATE;
 	}
 
 	public void increaseLife(int amount)

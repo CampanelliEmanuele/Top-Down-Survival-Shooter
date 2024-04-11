@@ -185,11 +185,15 @@ frame_progress = 0.0257512
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_upnyp")
 
-[node name="ShotTimer" type="Timer" parent="."]
-wait_time = 0.1
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.112
 
 [node name="BoostSpeed" type="Timer" parent="."]
 wait_time = 4.0
 
-[connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
+[node name="BoostFireRate" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="BoostSpeed" to="." method="_on_boost_speed_timeout"]
+[connection signal="timeout" from="BoostFireRate" to="." method="_on_boost_fire_rate_timeout"]

@@ -29,6 +29,7 @@ namespace scripts.classes
 					break;
 				
 				case ItemType.Gun:
+					player.BoostFireRate();
 					break;
 				
 				case ItemType.Health:
