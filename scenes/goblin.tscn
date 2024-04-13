@@ -101,6 +101,6 @@ collision_mask = 2
 position = Vector2(0.625, 3)
 shape = SubResource("CapsuleShape2D_yj3ee")
 
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="QueueFreeTimer" to="." method="_on_queue_free_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

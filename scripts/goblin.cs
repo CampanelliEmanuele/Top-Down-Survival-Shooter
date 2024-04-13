@@ -54,7 +54,7 @@ public partial class Goblin : CharacterBody2D
 		}
 	}
 
-	private void _on_timer_timeout()
+	private void _on_spawn_timer_timeout()
 	{
 		_navigationAgent.TargetPosition = _player.GlobalPosition;
 	}
@@ -100,3 +100,5 @@ public partial class Goblin : CharacterBody2D
 	}
 
 }
+
+
